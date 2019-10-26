@@ -1,4 +1,4 @@
-// Type definitions for node-iap 1.1.0
+// Type definitions for node-iap 1.1.1
 // Project: https://github.com/Wizcorp/node-iap
 // Definitions by: @alfonsodev <https://github.com/alfonsodev>
 
