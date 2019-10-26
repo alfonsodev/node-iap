@@ -52,6 +52,42 @@ export interface AmazonReceipt {
   testTransaction: boolean;
 }
 
+export interface ApplePurchase {
+  quantity: string;
+  product_id: string;
+  transaction_id: string;
+  original_transaction_id: string;
+  purchase_date: string;
+  purchase_date_ms: string;
+  purchase_date_pst: string;
+  original_purchase_date: string;
+  original_purchase_date_ms: string;
+  original_purchase_date_pst: string;
+  expires_date: string;
+  expires_date_ms: string;
+  expires_date_pst: string;
+  web_order_line_item_id: string;
+  is_trial_period: string;
+}
+export interface AppleReceipt {
+  original_purchase_date_pst: string;
+  purchase_date_ms: string;
+  unique_identifier: string;
+  original_transaction_id: string;
+  bvrs: string;
+  transaction_id: string;
+  quantity: string;
+  unique_vendor_identifier: string;
+  item_id: string;
+  product_id: string;
+  purchase_date: string;
+  original_purchase_date: string;
+  purchase_date_pst: string;
+  bid: string;
+  original_purchase_date_ms: string;
+  in_app: ApplePurchase[];
+}
+
 export interface VerifyAmazonPaymentResponse extends VerifyPaymentResponse {
   receipt: AmazonReceipt;
   platform: Amazon;
@@ -85,6 +121,18 @@ export function verifyPayment(
   callback: (error: Error, response: VerifyRokuPaymentResponse) => void
 ): void;
 
+export function verifyPayment(
+  platform: Apple | Google | Roku | Amazon,
+  payment: ApplePurchase | GooglePayment | RokuPayment | Amazon,
+  callback: (
+    error: Error,
+    response:
+      | VerifyAmazonPaymentResponse
+      | VerifyApplePaymentResponse
+      | VerifyGooglePaymentResponse
+      | VerifyRokuPaymentResponse
+  ) => void
+): void;
 export function cancelSubscription(
   platform: Google,
   payment: GooglePayment,
